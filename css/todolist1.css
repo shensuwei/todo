@@ -1,0 +1,64 @@
+@import url(base.css);
+body,html{
+	width: 100%;height: 100%;
+	overflow: hidden;
+	font-family: "宋体";
+}
+.box,.row,.left,.right{
+	height: 100%;
+	background: #A5E3DB;
+}
+.left{
+	position: relative;
+	background: #40BCAD;
+}
+.search{
+	margin-top: 20px;
+}
+.done{
+	margin-top: 20px;
+	font-size: 18px;
+}
+.addList{
+	position: absolute;
+	bottom: 20px;
+	font-size: 18px;
+}
+.list-con{
+	position: relative;
+	border-bottom:1px solid #ccc;
+	font-size: 14px;
+	padding: 10px 0px;
+	margin: 0 30px;
+}
+.list-con input{
+	border: 0;
+	width: 90%;
+}
+.list-con input:focus{
+	outline: none;
+}
+.list-con .remove{
+	font-size: 18px;
+	opacity: 0;
+	visibility: hidden;
+	transition:opacity 1s ease;
+}
+.list-con:hover .remove{
+	opacity: 1;
+	visibility: visible;
+}
+
+.header{
+	width: 100%;
+	height: 50px;
+	margin-top: 15px;
+	font-size: 30px;
+}
+.header .title{
+	float: left;
+
+}
+.header .addCon{
+	float: right;
+}

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>  
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/todolist1.css">
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/todolist1.js"></script>
+</head>
+<body ng-app="myapp">
+	<div class="container-fluid box" ng-controller="todo">
+        <div class="row">
+            <div class="col-xs-4 col-sm-3 left">
+                <!-- 搜索框 -->
+                <div class="input-group search">
+                  <input type="text" class="form-control" placeholder="搜索" style="margin-top:2px;" ng-model="search">
+                  <span class="input-group-addon glyphicon glyphicon-search"></span>
+                </div>
+
+                <!-- done -->
+                <div class="done" ng-click="isshow=false">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    已完成
+                    <span class="num">{{success.length}}</span>
+                </div>
+
+                <!-- 计划列表 -->
+                <div class="done">
+                    <span class="glyphicon glyphicon-list"></span>
+                    计划列表
+                </div>
+
+
+                <!-- 标题列表(新建时出现) -->
+                <div class="list" >
+                    <div class="list-con" ng-repeat="item in data  | filter:search  track by item.id">
+                        <input type="text" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur()">
+                        <span class="glyphicon glyphicon-trash remove" ng-click="removeList(item.id)"></span>
+                    </div>
+                </div>
+
+                <!-- 新建列表 -->
+                <div class="addList" ng-click="addList()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span>新建列表</span>
+                </div>
+
+            </div>
+            <div class="col-xs-8 col-sm-9 right" ng-show="isshow">
+                <!-- 新建内容 -->
+                <div class="header">
+                    <div class="title">
+                        {{currentCon.title}}
+                    </div>
+                    <span class="addCon glyphicon glyphicon-plus" ng-click="addCon()"></span>
+                </div>
+
+                <!-- 内容列表 -->
+                <div class="list">
+                    <div class="list-con" ng-repeat="item in currentCon.son track by item.id">
+                        <span class="glyphicon glyphicon-record" style="font-size:18px;" ng-click="done(item.id)"></span>
+                        <input type="text" ng-model="item.title" ng-blur="blurCon()">
+                        <span class="glyphicon glyphicon-trash remove" ng-click="removeCon(item.id)"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-8 col-sm-9 right" ng-show="!isshow">
+                <!-- 新建内容 -->
+                <div class="header">
+                    <div class="title">
+                        已完成
+                    </div>
+                </div>
+
+                <!-- 内容列表 -->
+                <div class="list">
+                    <div class="list-con" ng-repeat="item in success track by item.id">
+                        <input type="text" ng-model="item.title" ng-blur="blurCon()">
+                        <span class="glyphicon glyphicon-trash remove" ng-click="removeDone(item.id)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+
+    
+</body>
+</html>
